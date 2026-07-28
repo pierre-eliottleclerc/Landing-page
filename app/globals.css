@@ -508,6 +508,12 @@ footer .brand img.logo{height:24px}
 
 .lp-actions{display:flex;gap:12px;flex-wrap:wrap}
 
+.lp-sep{margin-top:26px;padding-top:22px;border-top:1px solid rgba(31,69,79,.14);display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.lp-sep span{font-size:.84rem;color:var(--taupe)}
+.lp-link{background:none;border:0;padding:0;cursor:pointer;font-family:inherit;font-size:.84rem;color:var(--teal);
+  text-decoration:underline;text-underline-offset:3px}
+.lp-link:hover{color:var(--navy)}
+
 .lp-error{max-width:640px;margin:0 auto 22px;background:#fdf3f3;border-left:2px solid #b33;border-radius:var(--r-sm);
   padding:14px 18px;font-size:.86rem;color:#8d2b2b}
 .lp-ok{max-width:920px;margin:0 auto 22px;background:#f2f7ee;border-left:2px solid var(--teal);border-radius:var(--r-sm);

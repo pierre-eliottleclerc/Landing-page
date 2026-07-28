@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { makeT } from '@/lib/i18n.js'
 import { supabase, supabaseConfigured, DOCUMENTS_BUCKET, SIGNED_URL_TTL } from '@/lib/supabase.js'
+import { ORG } from '@/lib/site.js'
 
 // Ce module isole tout ce qui dépend du client Supabase (~65 ko). Il est chargé
 // à la demande par Espace.jsx : les autres pages du site ne l'embarquent pas.
@@ -34,6 +35,8 @@ export default function EspaceContent({ lang }) {
   const [newPassword, setNewPassword] = useState('')
   const [showPwForm, setShowPwForm] = useState(false)
   const [pwChanged, setPwChanged] = useState(false)
+  const [showRequest, setShowRequest] = useState(false)
+  const [req, setReq] = useState({ prenom: '', nom: '', email: '' })
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
   const [investor, setInvestor] = useState(null)   // null = aucune fiche investisseur
@@ -153,6 +156,28 @@ export default function EspaceContent({ lang }) {
     }
   }
 
+  // Demande d'accès : ouvre la messagerie de l'utilisateur avec un message
+  // pré-rempli, comme le formulaire de la page Contact. Aucun envoi serveur.
+  const sendRequest = (e) => {
+    e.preventDefault()
+    const prenom = req.prenom.trim()
+    const nom = req.nom.trim()
+    const mail = req.email.trim()
+    if (!prenom || !nom || !mail) {
+      setError(t('Merci de compléter tous les champs.'))
+      return
+    }
+    setError(null)
+    const sujet = t("Demande d'accès à l'espace investisseur") + ' — ' + prenom + ' ' + nom
+    const corps =
+      t('Bonjour, je souhaiterais avoir accès à mon espace personnel investisseur.') + '\n\n' +
+      t('Prénom') + ' : ' + prenom + '\n' +
+      t('Nom') + ' : ' + nom + '\n' +
+      'E-mail : ' + mail + '\n'
+    window.location.href =
+      `mailto:${ORG.email}?subject=` + encodeURIComponent(sujet) + '&body=' + encodeURIComponent(corps)
+  }
+
   const open = async (prefix, name) => {
     setError(null)
     const { data, error: e } = await supabase.storage
@@ -217,6 +242,47 @@ export default function EspaceContent({ lang }) {
             </p>
           </div>
         </form>
+
+        <div className="lp-sep">
+          <span>{t("Pas encore d'accès ?")}</span>
+          <button type="button" className="lp-link" onClick={() => setShowRequest((v) => !v)}>
+            {t("Demande d'accès")}
+          </button>
+        </div>
+
+        {showRequest && (
+          <form className="form" onSubmit={sendRequest} noValidate style={{ marginTop: 22 }}>
+            <div className="f2">
+              <div className="field">
+                <label htmlFor="rq-fn">{t('Prénom')}</label>
+                <input
+                  id="rq-fn" autoComplete="given-name" required
+                  value={req.prenom} onChange={(e) => setReq({ ...req, prenom: e.target.value })}
+                />
+              </div>
+              <div className="field">
+                <label htmlFor="rq-ln">{t('Nom')}</label>
+                <input
+                  id="rq-ln" autoComplete="family-name" required
+                  value={req.nom} onChange={(e) => setReq({ ...req, nom: e.target.value })}
+                />
+              </div>
+            </div>
+            <div className="field">
+              <label htmlFor="rq-em">E-mail</label>
+              <input
+                id="rq-em" type="email" autoComplete="email" required
+                value={req.email} onChange={(e) => setReq({ ...req, email: e.target.value })}
+              />
+            </div>
+            <div>
+              <button className="btn dark" type="submit">{t('Envoyer la demande')}</button>
+              <p className="note" style={{ marginTop: 14 }}>
+                {t('Votre messagerie va s\'ouvrir avec un message pré-rempli à destination de Florestan IM.')}
+              </p>
+            </div>
+          </form>
+        )}
       </div>
     )
   } else if (!investor) {
