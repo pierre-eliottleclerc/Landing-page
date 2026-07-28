@@ -10,6 +10,8 @@ import Team from '@/components/pages/Team.jsx'
 import News from '@/components/pages/News.jsx'
 import Contact from '@/components/pages/Contact.jsx'
 import Legal from '@/components/pages/Legal.jsx'
+// Enveloppe légère : le client Supabase est chargé à la demande depuis
+// Espace.jsx, pour ne pas peser sur le bundle des autres pages.
 import Espace from '@/components/pages/Espace.jsx'
 
 // Une seule route attrape-tout sert les 11 pages × 2 langues. Le slug est

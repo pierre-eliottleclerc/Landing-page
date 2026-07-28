@@ -1,4 +1,23 @@
 export const DICT = {
+  // Espace investisseurs
+  "Espace investisseurs":"Investor portal",
+  "Accédez aux documents mis à votre disposition par Florestan IM. La connexion se fait par un lien envoyé à votre adresse email, sans mot de passe.":"Access the documents Florestan IM has made available to you. You sign in with a link sent to your email address — no password required.",
+  "Connexion":"Sign in",
+  "Votre adresse email":"Your email address",
+  "Recevoir mon lien d'accès":"Send me a sign-in link",
+  "Envoi…":"Sending…",
+  "Chargement…":"Loading…",
+  "Seules les adresses enregistrées par Florestan IM peuvent accéder à cet espace.":"Only email addresses registered by Florestan IM can access this portal.",
+  "Un lien de connexion vient de vous être envoyé. Ouvrez-le depuis cet appareil pour accéder à vos documents.":"A sign-in link has just been sent to you. Open it on this device to access your documents.",
+  "Accès non activé":"Access not yet enabled",
+  "Votre compte est bien authentifié, mais aucun document ne vous est encore attribué. Écrivez-nous à contact@florestan-im.com.":"Your account is authenticated, but no documents have been assigned to you yet. Please write to contact@florestan-im.com.",
+  "Connecté":"Signed in",
+  "Se déconnecter":"Sign out",
+  "Vos documents personnels":"Your personal documents",
+  "Aucun document disponible pour le moment.":"No documents available at this time.",
+  "Ce document n'est pas accessible avec votre compte.":"This document is not accessible with your account.",
+  "Espace non configuré":"Portal not configured",
+  "Les variables d'environnement Supabase ne sont pas définies sur cet environnement.":"The Supabase environment variables are not set in this environment.",
   // Navigation / header / footer
   "Notre Stratégie":"Our Strategy","Nos fonds":"Our funds","Notre équipe":"Our team","Actualités":"News",
   "Espace Personnel":"LP Login","Accueil":"Home","Informations":"Information","Avertissement":"Warning",
