@@ -99,9 +99,32 @@ les routes. Arrêter le serveur, supprimer `.next`, puis relancer.
 Avant la mise en production :
 
 - définir `NEXT_PUBLIC_SITE_URL` sur le domaine réel (sinon `lib/site.js`
-  retombe sur `https://florestan-im.com`) ;
-- **corriger les mentions légales** : elles déclarent encore « Wix.com Ltd »
-  comme hébergeur. Nommer l'hébergeur réel est une obligation légale en France.
+  retombe sur `https://florestan-im.com`).
+
+## Textes légaux
+
+Les trois textes (mentions légales, confidentialité, avertissement) vivent dans
+`data/legal.js`, sous forme de chaînes HTML. Le corps reste en français, standard
+pour un contenu réglementaire AMF ; seul le titre est traduit.
+
+**Ne pas éditer `data/legal.js` à la main avec un outil qui ne force pas l'UTF-8.**
+Ce fichier a déjà été corrompu une fois (accents doublement encodés, `société`
+devenu `sociÃƒÂ©tÃƒÂ©`) parce que la conversion lisait de l'UTF-8 comme de
+l'ANSI. Il est régénéré depuis l'`index.html` de référence par :
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\regen-legal.ps1
+```
+
+Le script contrôle lui-même l'absence de mojibake après écriture. Il porte un
+BOM UTF-8, nécessaire pour que PowerShell 5.1 interprète correctement ses
+accents — ne pas le retirer.
+
+L'hébergeur déclaré est **Vercel Inc.** (440 N Barranca Avenue #4133, Covina,
+CA 91723, États-Unis). Réserve à connaître : l'article 6 de la LCEN demande le
+numéro de téléphone de l'hébergeur, or Vercel n'en publie aucun, ni dans ses CGU
+ni dans sa politique de confidentialité. Le bloc renvoie donc vers `vercel.com/help`.
+À faire valider juridiquement si le point est jugé sensible.
 
 ## Limite connue
 
