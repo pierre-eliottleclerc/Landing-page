@@ -89,8 +89,13 @@ réécrit `.next` en continu — laisser tout cela se synchroniser sature le Dri
 provoque des verrous de fichiers. Les deux dossiers sont ignorés par Git.
 
 ```bash
-robocopy <drive> <miroir> /MIR /XD node_modules .next   # avant chaque build
+robocopy <drive> <miroir> /MIR /XD node_modules .next .git   # avant chaque build
 ```
+
+Exclure `.git` est important : sans cela le miroir devient une seconde copie de
+travail pointant vers le même dépôt distant, ce qui finit par produire des
+divergences. **La copie versionnée est celle du Drive, et elle seule** — le
+miroir ne sert qu'à `npm run dev` et `npm run build`.
 
 ⚠️ Ne jamais lancer `npm run build` pendant que `npm run dev` tourne : les deux
 partagent `.next` et le serveur de développement renvoie alors des 500 sur toutes
