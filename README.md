@@ -70,10 +70,31 @@ Le sitemap et le routage suivent automatiquement.
 
 ## Déploiement
 
-Projet Next.js standard → Vercel (import du dépôt, aucune configuration) ou tout
-hébergeur Node. `output: 'export'` n'est **volontairement pas** activé : cela
-préserve la possibilité d'ajouter des routes API, nécessaires si l'espace
-investisseur passe un jour par une liste maison adossée à Google Drive.
+Le dépôt de référence est
+[pierre-eliottleclerc/Landing-page](https://github.com/pierre-eliottleclerc/Landing-page),
+et Vercel y est branché : **tout push sur `main` déclenche un redéploiement**.
+
+Projet Next.js standard, aucune configuration à saisir dans Vercel (le framework
+est détecté automatiquement). `output: 'export'` n'est **volontairement pas**
+activé : cela préserve la possibilité d'ajouter des routes API, nécessaires si
+l'espace investisseur passe un jour par une liste maison adossée à Google Drive.
+
+### Circuit de travail
+
+Les sources vivent sur le Drive partagé
+(`0. Corporate\27. SIte Web\florestan-next`), qui est aussi la copie de travail
+Git. La compilation se fait en revanche sur un **miroir local** : `node_modules`
+représente des dizaines de milliers de fichiers et le serveur de développement
+réécrit `.next` en continu — laisser tout cela se synchroniser sature le Drive et
+provoque des verrous de fichiers. Les deux dossiers sont ignorés par Git.
+
+```bash
+robocopy <drive> <miroir> /MIR /XD node_modules .next   # avant chaque build
+```
+
+⚠️ Ne jamais lancer `npm run build` pendant que `npm run dev` tourne : les deux
+partagent `.next` et le serveur de développement renvoie alors des 500 sur toutes
+les routes. Arrêter le serveur, supprimer `.next`, puis relancer.
 
 Avant la mise en production :
 
