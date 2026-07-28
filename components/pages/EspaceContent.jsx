@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { makeT } from '@/lib/i18n.js'
 import { supabase, supabaseConfigured, DOCUMENTS_BUCKET, SIGNED_URL_TTL } from '@/lib/supabase.js'
 
@@ -19,7 +19,12 @@ const formatSize = (bytes) => {
 }
 
 export default function EspaceContent({ lang }) {
-  const t = makeT(lang)
+  // `useMemo` est indispensable ici, pas cosmétique : `makeT` renvoie une
+  // nouvelle fonction à chaque appel. Sans mémoïsation, `load` change
+  // d'identité à chaque rendu, l'effet qui l'appelle se redéclenche, l'état
+  // change, un nouveau rendu suit — boucle infinie, avec une requête Supabase
+  // à chaque tour.
+  const t = useMemo(() => makeT(lang), [lang])
   const locale = lang === 'en' ? 'en-GB' : 'fr-FR'
 
   const [session, setSession] = useState(null)
@@ -96,9 +101,14 @@ export default function EspaceContent({ lang }) {
     }
   }, [t])
 
+  // On dépend de l'adresse (une chaîne) et non de l'objet session : Supabase en
+  // émet un nouveau à chaque rafraîchissement de jeton, ce qui relancerait un
+  // chargement complet sans raison.
+  const userEmail = session?.user?.email?.toLowerCase() ?? null
+
   useEffect(() => {
-    if (session?.user?.email) load(session.user.email.toLowerCase())
-  }, [session, load])
+    if (userEmail) load(userEmail)
+  }, [userEmail, load])
 
   // --- Actions ---
   // Connexion par email + mot de passe. Aucun email n'est envoyé, ni à la
