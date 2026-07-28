@@ -1,0 +1,14 @@
+# Normalise les fins de ligne dans le dépôt (LF), tout en respectant la
+# convention native dans les copies de travail. Évite les diffs parasites
+# entre Windows, macOS et Linux.
+* text=auto
+
+# Binaires : ne jamais tenter de conversion.
+*.mp4 binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary

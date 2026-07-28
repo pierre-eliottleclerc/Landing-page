@@ -1,0 +1,9 @@
+export const TEAM = [
+  {n:"François Rostand", r:"Associé", p:"/assets/team-1-rostand.jpg", li:"https://www.linkedin.com/in/francois-rostand/", b:["Diplômé de l'École Polytechnique et de Cambridge","Expérience en investissement chez Goldman Sachs SSG et PAI Partners"]},
+  {n:"Thomas Zaepffel", r:"Associé", p:"/assets/team-2-zaepffel.jpg", li:"https://www.linkedin.com/in/thomas-zaepffel-7a794049/", b:["Diplômé de l'École Polytechnique et HEC Paris","Co-fondateur de Jerikho-IM","Co-fondateur de Adot."]},
+  {n:"Geoffroy Mestrallet", r:"Associé", p:"/assets/team-3-mestrallet.jpg", li:"https://www.linkedin.com/in/geoffroy-mestrallet/", b:["Diplômé de l'IÉSEG School of Business","7 ans d'expérience chez JLL à Paris","Co-fondateur Jerikho IM"]},
+  {n:"Pierre-Eliott Leclerc", r:"Analyste", p:"/assets/team-4-leclerc.jpg", li:"https://www.linkedin.com/in/pierre-eliott-leclerc/", b:["Diplômé de l'École Polytechnique et HEC Paris","Expérience en investissement chez Waterland Private Equity","Expérience en conseil en stratégie chez Bain & Company"]},
+  {n:"Jérémie Pinon", r:"Analyste", p:"/assets/team-5-pinon.jpg", li:"https://www.linkedin.com/in/jeremiepinon/", b:["Diplômé de Warwick et Dauphine","Expérience en Private Equity chez Andera"]},
+  {n:"Thomas Mathivet", r:"Directeur Général Relations Partenaires", p:"/assets/team-6-mathivet.jpg", li:"https://www.linkedin.com/in/thomasmathivet/", b:["3 ans Directeur des relations institutionnelles chez Active Asset Allocation","3 ans Directeur Commercial chez Anaxago"]},
+  {n:"Juliette Bosché", r:"Responsable Relations Partenaires", p:"/assets/team-7-bosche.jpg", li:"https://www.linkedin.com/in/juliette-bosch%C3%A9/", b:["Diplômée de l'IÉSEG School of Management","Expérience en Audit chez Deloitte"]}
+];
