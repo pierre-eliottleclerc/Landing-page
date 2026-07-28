@@ -38,10 +38,16 @@ export default function Contact({ lang }) {
 
   return (
     <>
+      {/* Le dégradé reste en fond de section : il sert de repli pendant le
+          chargement de la vidéo, et pour les visiteurs qui demandent la
+          réduction des animations — le CSS masque alors les vidéos. */}
       <section
         className="pg-hero tight"
         style={{ padding: '118px 0', background: 'linear-gradient(140deg,var(--navy) 0%,var(--teal) 100%)' }}
       >
+        <div className="bg-media">
+          <video src="/assets/wave-hero.mp4" autoPlay muted loop playsInline preload="auto" />
+        </div>
         <div className="wrap">
           <p className="eyebrow rv">{t('Contact')}</p>
           <h1 className="rv" style={{ fontSize: 'clamp(2.1rem,4.2vw,3.4rem)' }}>{t('Contactez-nous')}</h1>

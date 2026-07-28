@@ -17,10 +17,15 @@ export default function Espace({ lang }) {
 
   return (
     <>
+      {/* Dégradé conservé en repli : chargement de la vidéo, et visiteurs ayant
+          demandé la réduction des animations (le CSS masque alors les vidéos). */}
       <section
         className="pg-hero tight"
         style={{ padding: '110px 0', background: 'linear-gradient(140deg,var(--navy) 0%,var(--teal) 100%)' }}
       >
+        <div className="bg-media">
+          <video src="/assets/wave-hero.mp4" autoPlay muted loop playsInline preload="auto" />
+        </div>
         <div className="wrap">
           <p className="eyebrow rv">{t('Espace Personnel')}</p>
           <h1 className="rv" style={{ fontSize: 'clamp(2.1rem,4.2vw,3.4rem)' }}>
