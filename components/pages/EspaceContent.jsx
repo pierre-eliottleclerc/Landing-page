@@ -25,7 +25,10 @@ export default function EspaceContent({ lang }) {
   const [session, setSession] = useState(null)
   const [ready, setReady] = useState(false)
   const [email, setEmail] = useState('')
-  const [sent, setSent] = useState(false)
+  const [password, setPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+  const [showPwForm, setShowPwForm] = useState(false)
+  const [pwChanged, setPwChanged] = useState(false)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
   const [investor, setInvestor] = useState(null)   // null = aucune fiche investisseur
@@ -98,17 +101,46 @@ export default function EspaceContent({ lang }) {
   }, [session, load])
 
   // --- Actions ---
-  const sendLink = async (e) => {
+  // Connexion par email + mot de passe. Aucun email n'est envoyé, ni à la
+  // connexion ni ailleurs : le projet n'a pas de SMTP configuré, et c'est
+  // volontaire. Les comptes sont créés par Florestan IM depuis le tableau de
+  // bord Supabase, avec « Auto Confirm User » activé.
+  const signIn = async (e) => {
     e.preventDefault()
     setError(null)
     setLoading(true)
-    const { error: e2 } = await supabase.auth.signInWithOtp({
+    const { error: e2 } = await supabase.auth.signInWithPassword({
       email: email.trim().toLowerCase(),
-      options: { emailRedirectTo: window.location.href },
+      password,
     })
     setLoading(false)
+    if (e2) {
+      // Message volontairement identique pour un email inconnu et un mot de
+      // passe faux : on n'indique pas à un tiers si une adresse est enregistrée.
+      setError(t('Adresse email ou mot de passe incorrect.'))
+    } else {
+      setPassword('')
+    }
+  }
+
+  // Changement de mot de passe en session. Permet à l'investisseur de remplacer
+  // le mot de passe initial transmis par Florestan IM, sans passer par un email.
+  const changePassword = async (e) => {
+    e.preventDefault()
+    setError(null)
+    if (newPassword.length < 10) {
+      setError(t('Le mot de passe doit comporter au moins 10 caractères.'))
+      return
+    }
+    setLoading(true)
+    const { error: e2 } = await supabase.auth.updateUser({ password: newPassword })
+    setLoading(false)
     if (e2) setError(e2.message)
-    else setSent(true)
+    else {
+      setNewPassword('')
+      setPwChanged(true)
+      setShowPwForm(false)
+    }
   }
 
   const open = async (prefix, name) => {
@@ -124,7 +156,10 @@ export default function EspaceContent({ lang }) {
     await supabase.auth.signOut()
     setGroups([])
     setInvestor(null)
-    setSent(false)
+    setPassword('')
+    setNewPassword('')
+    setShowPwForm(false)
+    setPwChanged(false)
   }
 
   // --- Rendu ---
@@ -145,29 +180,33 @@ export default function EspaceContent({ lang }) {
     body = (
       <div className="lp-panel">
         <h3>{t('Connexion')}</h3>
-        {sent ? (
-          <p className="note" role="status">
-            {t('Un lien de connexion vient de vous être envoyé. Ouvrez-le depuis cet appareil pour accéder à vos documents.')}
-          </p>
-        ) : (
-          <form className="form" onSubmit={sendLink} noValidate>
-            <div className="field">
-              <label htmlFor="lp-email">{t('Votre adresse email')}</label>
-              <input
-                id="lp-email" type="email" autoComplete="email" required
-                value={email} onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div>
-              <button className="btn dark" type="submit" disabled={loading}>
-                {loading ? t('Envoi…') : t("Recevoir mon lien d'accès")}
-              </button>
-              <p className="note" style={{ marginTop: 14 }}>
-                {t('Seules les adresses enregistrées par Florestan IM peuvent accéder à cet espace.')}
-              </p>
-            </div>
-          </form>
-        )}
+        <form className="form" onSubmit={signIn} noValidate>
+          <div className="field">
+            <label htmlFor="lp-email">{t('Votre adresse email')}</label>
+            <input
+              id="lp-email" type="email" autoComplete="email" required
+              value={email} onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="field">
+            <label htmlFor="lp-pw">{t('Mot de passe')}</label>
+            <input
+              id="lp-pw" type="password" autoComplete="current-password" required
+              value={password} onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div>
+            <button className="btn dark" type="submit" disabled={loading}>
+              {loading ? t('Connexion…') : t('Se connecter')}
+            </button>
+            {/* Pas de lien « mot de passe oublié » : il enverrait un email, or
+                aucun SMTP n'est configuré. Un bouton qui échoue en silence
+                serait pire que son absence. */}
+            <p className="note" style={{ marginTop: 14 }}>
+              {t('Vos identifiants vous sont fournis par Florestan IM. En cas de perte, écrivez-nous à contact@florestan-im.com.')}
+            </p>
+          </div>
+        </form>
       </div>
     )
   } else if (!investor) {
@@ -192,10 +231,42 @@ export default function EspaceContent({ lang }) {
             <p className="eyebrow">{t('Connecté')}</p>
             <h3>{investor.full_name}</h3>
           </div>
-          <button className="btn dark" type="button" onClick={signOut}>
-            {t('Se déconnecter')}
-          </button>
+          <div className="lp-actions">
+            <button className="btn-ghost dark" type="button" onClick={() => setShowPwForm((v) => !v)}>
+              {t('Changer mon mot de passe')}
+            </button>
+            <button className="btn dark" type="button" onClick={signOut}>
+              {t('Se déconnecter')}
+            </button>
+          </div>
         </div>
+
+        {pwChanged && (
+          <p className="lp-ok" role="status">{t('Votre mot de passe a été modifié.')}</p>
+        )}
+
+        {showPwForm && (
+          <div className="lp-panel" style={{ marginBottom: 34 }}>
+            <h3>{t('Changer mon mot de passe')}</h3>
+            <form className="form" onSubmit={changePassword} noValidate>
+              <div className="field">
+                <label htmlFor="lp-newpw">{t('Nouveau mot de passe')}</label>
+                <input
+                  id="lp-newpw" type="password" autoComplete="new-password" required minLength={10}
+                  value={newPassword} onChange={(e) => setNewPassword(e.target.value)}
+                />
+              </div>
+              <div>
+                <button className="btn dark" type="submit" disabled={loading}>
+                  {t('Enregistrer')}
+                </button>
+                <p className="note" style={{ marginTop: 14 }}>
+                  {t('Au moins 10 caractères. Nous vous recommandons de remplacer le mot de passe initial qui vous a été transmis.')}
+                </p>
+              </div>
+            </form>
+          </div>
+        )}
 
         {loading && <p className="note">{t('Chargement…')}</p>}
 
