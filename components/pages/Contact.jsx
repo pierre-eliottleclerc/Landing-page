@@ -46,7 +46,7 @@ export default function Contact({ lang }) {
           chargement de la vidéo, et pour les visiteurs qui demandent la
           réduction des animations — le CSS masque alors les vidéos. */}
       <section
-        className="pg-hero tight"
+        className="pg-hero tight soft-media"
         style={{ padding: '118px 0', background: 'linear-gradient(140deg,var(--navy) 0%,var(--teal) 100%)' }}
       >
         <div className="bg-media">

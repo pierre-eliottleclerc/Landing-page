@@ -1,7 +1,7 @@
 export const DICT = {
   // Espace investisseurs
   "Espace investisseurs":"Investor portal",
-  "Accédez aux documents mis à votre disposition par Florestan IM. La connexion se fait par un lien envoyé à votre adresse email, sans mot de passe.":"Access the documents Florestan IM has made available to you. You sign in with a link sent to your email address — no password required.",
+  "Accédez aux documents mis à votre disposition par Florestan IM. Connectez-vous avec les identifiants qui vous ont été communiqués.":"Access the documents Florestan IM has made available to you. Sign in with the credentials you were provided.",
   "Connexion":"Sign in",
   "Votre adresse email":"Your email address",
   "Mot de passe":"Password",

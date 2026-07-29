@@ -371,6 +371,11 @@ footer .brand img.logo{height:24px}
 .hero .wrap,.pg-hero .wrap{position:relative;z-index:2}
 .pg-hero{position:relative;overflow:hidden;color:#fff}
 
+/* Vidéo atténuée. La séquence de vague est bien plus lumineuse que celle des
+   pages de fonds : à voile égal, elle ressort trop. On baisse son opacité pour
+   laisser remonter le dégradé de marque posé en fond de section. */
+.pg-hero.soft-media .bg-media video{opacity:.32}
+
 /* fund card banners */
 .fund-card .thumb{aspect-ratio:16/9;overflow:hidden;background:var(--teal)}
 .fund-card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.3,1)}

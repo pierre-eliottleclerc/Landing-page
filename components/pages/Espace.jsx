@@ -20,7 +20,7 @@ export default function Espace({ lang }) {
       {/* Dégradé conservé en repli : chargement de la vidéo, et visiteurs ayant
           demandé la réduction des animations (le CSS masque alors les vidéos). */}
       <section
-        className="pg-hero tight"
+        className="pg-hero tight soft-media"
         style={{ padding: '110px 0', background: 'linear-gradient(140deg,var(--navy) 0%,var(--teal) 100%)' }}
       >
         <div className="bg-media">
@@ -33,7 +33,7 @@ export default function Espace({ lang }) {
           </h1>
           <div className="rule rv"></div>
           <p className="rv" style={{ maxWidth: '56ch', color: 'rgba(255,255,255,.8)' }}>
-            {t('Accédez aux documents mis à votre disposition par Florestan IM. La connexion se fait par un lien envoyé à votre adresse email, sans mot de passe.')}
+            {t('Accédez aux documents mis à votre disposition par Florestan IM. Connectez-vous avec les identifiants qui vous ont été communiqués.')}
           </p>
         </div>
       </section>
