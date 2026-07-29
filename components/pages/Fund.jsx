@@ -1,6 +1,5 @@
-import Link from 'next/link'
 import { makeT } from '@/lib/i18n.js'
-import { pathFor } from '@/lib/routes.js'
+import DocRequestForm from '@/components/DocRequestForm.jsx'
 
 const DISCLAIMER =
   "*La performance n'est ni garantie ni contractuelle et constitue uniquement un objectif de gestion. Investir dans le Fonds comporte un risque de perte en capital et un risque d'illiquidité. Les performances passées ne préjugent pas des performances futures, lesquelles sont susceptibles d'être affectées par la fiscalité, en fonction de la situation personnelle de chaque investisseur et du régime fiscal qui lui est applicable."
@@ -85,7 +84,7 @@ export default function Fund({ lang, fund }) {
 
           {d.button && (
             <div style={{ marginTop: 44 }} className="rv">
-              <Link href={pathFor('contact', lang)} className="btn dark">{t(d.button)}</Link>
+              <DocRequestForm lang={lang} fundName={d.name} label={d.button} />
             </div>
           )}
         </div>

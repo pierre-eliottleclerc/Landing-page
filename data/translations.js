@@ -140,6 +140,8 @@ export const DICT = {
   "Votre messagerie s'ouvre pour envoyer le message à contact@florestan-im.com.":"Your email app is opening to send the message to contact@florestan-im.com.",
   "Merci de compléter tous les champs.":"Please complete all fields.",
   "(facultatif)":"(optional)",
+  "Demande de documentation":"Documentation request",
+  "Bonjour,\n\nJe serais intéressé de recevoir plus d'informations sur {fonds}.\n\nBien à vous,\n{nom}":"Hello,\n\nI would be interested in receiving more information about {fonds}.\n\nKind regards,\n{nom}",
   "Bonjour,\n\nJe serais intéressé par le fait de recevoir plus d'information sur Florestan.\n\nBien à vous,\n{prenom}":"Hello,\n\nI would be interested in receiving more information about Florestan.\n\nKind regards,\n{prenom}",
   "Merci, votre message a bien été pris en compte. (Démo — aucun envoi réel.)":"Thank you, your message has been received. (Demo — nothing is actually sent.)"
 };
