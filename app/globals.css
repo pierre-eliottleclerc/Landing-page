@@ -223,7 +223,10 @@ section.tight{padding:72px 0}
 .adn p{color:rgba(255,255,255,.66);font-size:.92rem}
 
 /* ---------- TIMELINE / MARKET ---------- */
-.market{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+/* `end` et non `center` : le graphique doit s'aligner sur le bas du texte de
+   gauche, sinon il flotte verticalement sans repère. Repasse en une colonne
+   sous 1024px, où l'alignement n'a plus d'objet. */
+.market{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end}
 .bars{display:flex;align-items:flex-end;gap:18px;height:280px;margin-top:10px}
 .bars .b{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
 .bars .col{
@@ -505,6 +508,8 @@ footer .brand img.logo{height:24px}
 .lp-list button:hover{background:#fff;border-color:rgba(31,69,79,.28);transform:translateX(3px)}
 .lp-list .n{font-size:.94rem;color:var(--teal);word-break:break-word}
 .lp-list .m{font-size:.76rem;color:var(--taupe);white-space:nowrap;flex-shrink:0}
+
+.field label .opt{color:var(--taupe);letter-spacing:0;text-transform:none;font-size:.72rem}
 
 .lp-actions{display:flex;gap:12px;flex-wrap:wrap}
 

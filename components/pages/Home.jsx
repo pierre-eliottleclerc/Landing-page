@@ -53,7 +53,7 @@ export default function Home({ lang }) {
             <Link href={pathFor('fc2', lang)} className="btn alt">{t('Découvrir FC2')}</Link>
           </div>
           <div className="hero-stats rv">
-            <div><b>{'> LBO'}</b><span>{t('Stratégie')}</span></div>
+            <div><b>LBO</b><span>{t('Stratégie')}</span></div>
             <div><b>Europe</b><span>{t('Géographie')}</span></div>
             <div><b>17%</b><span>{t('TRI net cible*')}</span></div>
           </div>

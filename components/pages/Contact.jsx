@@ -4,6 +4,12 @@ import { useState } from 'react'
 import { makeT } from '@/lib/i18n.js'
 import { ORG } from '@/lib/site.js'
 
+// Message envoyé lorsque le visiteur laisse le champ libre vide. `{prenom}` est
+// remplacé par la valeur du formulaire. La chaîne entière est traduite, la
+// normalisation du dictionnaire tolérant les retours à la ligne dans les clés.
+const MESSAGE_PAR_DEFAUT =
+  "Bonjour,\n\nJe serais intéressé par le fait de recevoir plus d'information sur Florestan.\n\nBien à vous,\n{prenom}"
+
 export default function Contact({ lang }) {
   const t = makeT(lang)
   const [msg, setMsg] = useState(null) // { text, ok }
@@ -20,14 +26,12 @@ export default function Contact({ lang }) {
     }
     const prenom = f.prenom.value.trim()
     const nom = f.nom.value.trim()
-    const email = f.email.value.trim()
     const message = f.message.value.trim()
     const sujet = t('Prise de contact') + ' — ' + prenom + ' ' + nom
-    const corps =
-      t('Prénom') + ' : ' + prenom + '\n' +
-      t('Nom') + ' : ' + nom + '\n' +
-      'E-mail : ' + email + '\n\n' +
-      message
+    // Nom, prénom et adresse ne sont plus repris dans le corps : le message part
+    // depuis la messagerie du visiteur, son adresse est donc déjà l'expéditeur,
+    // et son nom figure dans l'objet.
+    const corps = message || t(MESSAGE_PAR_DEFAUT).replace('{prenom}', prenom)
     window.location.href =
       `mailto:${ORG.email}?subject=` + encodeURIComponent(sujet) + '&body=' + encodeURIComponent(corps)
     setMsg({
@@ -90,8 +94,8 @@ export default function Contact({ lang }) {
                 <input id="em" type="email" name="email" autoComplete="email" required />
               </div>
               <div className="field">
-                <label htmlFor="ms">{t('Message')}</label>
-                <textarea id="ms" name="message" required />
+                <label htmlFor="ms">{t('Message')} <span className="opt">{t('(facultatif)')}</span></label>
+                <textarea id="ms" name="message" />
               </div>
               <div>
                 <button className="btn dark" type="submit">{t('Envoyer')}</button>

@@ -22,7 +22,6 @@ export const DICT = {
   "Bonjour, je souhaiterais avoir accès à mon espace personnel investisseur.":"Hello, I would like to be given access to my personal investor portal.",
   "Envoyer la demande":"Send request",
   "Votre messagerie va s'ouvrir avec un message pré-rempli à destination de Florestan IM.":"Your email client will open with a pre-filled message addressed to Florestan IM.",
-  "Merci de compléter tous les champs.":"Please complete all fields.",
   "Accès non activé":"Access not yet enabled",
   "Votre compte est bien authentifié, mais aucun document ne vous est encore attribué. Écrivez-nous à contact@florestan-im.com.":"Your account is authenticated, but no documents have been assigned to you yet. Please write to contact@florestan-im.com.",
   "Connecté":"Signed in",
@@ -140,5 +139,7 @@ export const DICT = {
   "Prise de contact":"New enquiry",
   "Votre messagerie s'ouvre pour envoyer le message à contact@florestan-im.com.":"Your email app is opening to send the message to contact@florestan-im.com.",
   "Merci de compléter tous les champs.":"Please complete all fields.",
+  "(facultatif)":"(optional)",
+  "Bonjour,\n\nJe serais intéressé par le fait de recevoir plus d'information sur Florestan.\n\nBien à vous,\n{prenom}":"Hello,\n\nI would be interested in receiving more information about Florestan.\n\nKind regards,\n{prenom}",
   "Merci, votre message a bien été pris en compte. (Démo — aucun envoi réel.)":"Thank you, your message has been received. (Demo — nothing is actually sent.)"
 };
