@@ -1,7 +1,7 @@
 export const DICT = {
   // Espace investisseurs
   "Espace investisseurs":"Investor portal",
-  "Accédez aux documents mis à votre disposition par Florestan IM. Connectez-vous avec les identifiants qui vous ont été communiqués.":"Access the documents Florestan IM has made available to you. Sign in with the credentials you were provided.",
+  "Accédez aux documents mis à votre disposition par Florestan. Connectez-vous avec les identifiants qui vous ont été communiqués.":"Access the documents Florestan has made available to you. Sign in with the credentials you were provided.",
   "Connexion":"Sign in",
   "Votre adresse email":"Your email address",
   "Mot de passe":"Password",
@@ -9,7 +9,7 @@ export const DICT = {
   "Connexion…":"Signing in…",
   "Chargement…":"Loading…",
   "Adresse email ou mot de passe incorrect.":"Incorrect email address or password.",
-  "Vos identifiants vous sont fournis par Florestan IM. En cas de perte, écrivez-nous à contact@florestan-im.com.":"Your credentials are provided by Florestan IM. If you lose them, please write to contact@florestan-im.com.",
+  "Vos identifiants vous sont fournis par Florestan. En cas de perte, écrivez-nous à contact@florestan-im.com.":"Your credentials are provided by Florestan. If you lose them, please write to contact@florestan-im.com.",
   "Changer mon mot de passe":"Change my password",
   "Nouveau mot de passe":"New password",
   "Enregistrer":"Save",
@@ -21,7 +21,7 @@ export const DICT = {
   "Demande d'accès à l'espace investisseur":"Request for access to the investor portal",
   "Bonjour, je souhaiterais avoir accès à mon espace personnel investisseur.":"Hello, I would like to be given access to my personal investor portal.",
   "Envoyer la demande":"Send request",
-  "Votre messagerie va s'ouvrir avec un message pré-rempli à destination de Florestan IM.":"Your email client will open with a pre-filled message addressed to Florestan IM.",
+  "Votre messagerie va s'ouvrir avec un message pré-rempli à destination de Florestan.":"Your email client will open with a pre-filled message addressed to Florestan.",
   "Accès non activé":"Access not yet enabled",
   "Votre compte est bien authentifié, mais aucun document ne vous est encore attribué. Écrivez-nous à contact@florestan-im.com.":"Your account is authenticated, but no documents have been assigned to you yet. Please write to contact@florestan-im.com.",
   "Connecté":"Signed in",

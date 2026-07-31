@@ -66,7 +66,7 @@ export default function Contact({ lang }) {
         <div className="wrap">
           <div className="contact">
             <div className="contact-info rv">
-              <p className="eyebrow" style={{ color: 'var(--taupe-lt)' }}>Florestan IM</p>
+              <p className="eyebrow" style={{ color: 'var(--taupe-lt)' }}>Florestan</p>
               <h3>{t('Nos coordonnées')}</h3>
               <div className="blk">
                 <div className="k">{t('Adresse')}</div>

@@ -238,7 +238,7 @@ export default function EspaceContent({ lang }) {
                 aucun SMTP n'est configuré. Un bouton qui échoue en silence
                 serait pire que son absence. */}
             <p className="note" style={{ marginTop: 14 }}>
-              {t('Vos identifiants vous sont fournis par Florestan IM. En cas de perte, écrivez-nous à contact@florestan-im.com.')}
+              {t('Vos identifiants vous sont fournis par Florestan. En cas de perte, écrivez-nous à contact@florestan-im.com.')}
             </p>
           </div>
         </form>
@@ -278,7 +278,7 @@ export default function EspaceContent({ lang }) {
             <div>
               <button className="btn dark" type="submit">{t('Envoyer la demande')}</button>
               <p className="note" style={{ marginTop: 14 }}>
-                {t('Votre messagerie va s\'ouvrir avec un message pré-rempli à destination de Florestan IM.')}
+                {t('Votre messagerie va s\'ouvrir avec un message pré-rempli à destination de Florestan.')}
               </p>
             </div>
           </form>

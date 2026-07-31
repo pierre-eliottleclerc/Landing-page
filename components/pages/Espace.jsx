@@ -33,7 +33,7 @@ export default function Espace({ lang }) {
           </h1>
           <div className="rule rv"></div>
           <p className="rv" style={{ maxWidth: '56ch', color: 'rgba(255,255,255,.8)' }}>
-            {t('Accédez aux documents mis à votre disposition par Florestan IM. Connectez-vous avec les identifiants qui vous ont été communiqués.')}
+            {t('Accédez aux documents mis à votre disposition par Florestan. Connectez-vous avec les identifiants qui vous ont été communiqués.')}
           </p>
         </div>
       </section>

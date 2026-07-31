@@ -88,7 +88,7 @@ export default function DocRequestForm({ lang, fundName, label }) {
             <div>
               <button className="btn dark" type="submit">{t('Envoyer la demande')}</button>
               <p className="note" style={{ marginTop: 14 }}>
-                {t("Votre messagerie va s'ouvrir avec un message pré-rempli à destination de Florestan IM.")}
+                {t("Votre messagerie va s'ouvrir avec un message pré-rempli à destination de Florestan.")}
               </p>
             </div>
           </form>
