@@ -14,6 +14,14 @@ export function generateStaticParams() {
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
+  // Favicon : Google l'affiche à côté du résultat de recherche, les navigateurs
+  // dans l'onglet. Déclaré explicitement plutôt que par la convention
+  // `app/icon.png`, car la racine de l'application est `app/[lang]/` et le
+  // rattachement automatique n'y est pas garanti.
+  icons: {
+    icon: '/favicon.png',
+    apple: '/apple-icon.png',
+  },
 }
 
 export default async function LangLayout({ children, params }) {
